@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Números Ímpares</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #45a049; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; min-height: 50px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 1 - Números Ímpares no Intervalo</h1>
+    <p>Kyle precisa descobrir os números ímpares dentre o intervalo que ele informar.</p>
+    <button onclick="encontrarImpares()">Informar Intervalo</button>
+    <div id="resultado"></div>
+
+    <script>
+        function encontrarImpares() {
+            let inicio = parseInt(prompt("Digite o número inicial do intervalo:"));
+            let fim = parseInt(prompt("Digite o número final do intervalo:"));
+
+            if (isNaN(inicio) || isNaN(fim)) {
+                document.getElementById("resultado").innerHTML = "<p style='color:red'>Por favor, digite números válidos.</p>";
+                return;
+            }
+
+            if (inicio > fim) {
+                let temp = inicio;
+                inicio = fim;
+                fim = temp;
+            }
+
+            let impares = [];
+            for (let i = inicio; i <= fim; i++) {
+                if (i % 2 !== 0) {
+                    impares.push(i);
+                }
+            }
+
+            if (impares.length === 0) {
+                document.getElementById("resultado").innerHTML = "<p>Não há números ímpares neste intervalo.</p>";
+            } else {
+                document.getElementById("resultado").innerHTML = 
+                    `<p><strong>Números ímpares entre ${inicio} e ${fim}:</strong></p>
+                     <p>${impares.join(", ")}</p>
+                     <p>Total: ${impares.length} número(s) ímpar(es).</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

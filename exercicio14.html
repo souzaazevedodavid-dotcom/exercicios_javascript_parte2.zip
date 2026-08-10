@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 14 - Ímpares Decrescentes</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #E91E63; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #C2185B; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 14 - Números Ímpares Decrescentes a partir de 100</h1>
+    <button onclick="mostrar()">Mostrar Ímpares</button>
+    <div id="resultado"></div>
+
+    <script>
+        function mostrar() {
+            let impares = [];
+            // Começando pelo 100 (par), o primeiro ímpar é 99
+            for (let i = 99; i >= 1; i -= 2) {
+                impares.push(i);
+            }
+
+            document.getElementById("resultado").innerHTML = `
+                <p><strong>Números ímpares decrescentes começando de 100:</strong></p>
+                <p>${impares.join(", ")}</p>
+                <p>Total: ${impares.length} números.</p>
+            `;
+            
+            console.log(impares.join(", "));
+        }
+    </script>
+</body>
+</html>

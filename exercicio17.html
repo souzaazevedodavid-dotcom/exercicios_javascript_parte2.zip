@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 17 - Robô Subindo Escada</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #8BC34A; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #689F38; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; max-height: 400px; overflow-y: auto; }
+        .degrau { padding: 5px; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 17 - Robô Subindo a Escada</h1>
+    <p>Escada de 20 degraus. Cada degrau leva 3 segundos.</p>
+    <button onclick="simular()">Simular Subida</button>
+    <div id="resultado"></div>
+
+    <script>
+        function simular() {
+            let totalDegraus = 20;
+            let tempoPorDegrau = 3;
+            let tempoAcumulado = 0;
+            let html = "";
+
+            for (let degrau = 1; degrau <= totalDegraus; degrau++) {
+                tempoAcumulado += tempoPorDegrau;
+                html += `<div class="degrau">Degrau ${degrau}: ${tempoAcumulado} segundos</div>`;
+            }
+
+            html += `<p style="margin-top:15px; font-size:18px; color:green;">
+                <strong>Tempo total para subir os 20 degraus: ${tempoAcumulado} segundos</strong>
+                (${(tempoAcumulado / 60).toFixed(1)} minutos)
+            </p>`;
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

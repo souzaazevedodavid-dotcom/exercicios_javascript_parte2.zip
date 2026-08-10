@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 18 - Contador com Pulo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #FF5722; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #E64A19; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        .numero { display: inline-block; width: 50px; text-align: center; padding: 5px; margin: 2px; background: #eee; border-radius: 3px; }
+        .pulo { background: #FFCDD2; color: #C62828; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 18 - Contador de 1 a 25 com "Pulo"</h1>
+    <p>Se o número for divisível por 3, mostra "Pulo" no lugar.</p>
+    <button onclick="contar()">Executar Contador</button>
+    <div id="resultado"></div>
+
+    <script>
+        function contar() {
+            let html = "";
+            for (let i = 1; i <= 25; i++) {
+                if (i % 3 === 0) {
+                    html += `<span class="numero pulo">Pulo</span>`;
+                    console.log("Pulo");
+                } else {
+                    html += `<span class="numero">${i}</span>`;
+                    console.log(i);
+                }
+            }
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

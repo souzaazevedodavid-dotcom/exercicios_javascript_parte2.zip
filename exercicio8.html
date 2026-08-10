@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 8 - Lucro do Violão</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #388E3C; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        .calc { background: #e8f5e9; padding: 10px; margin: 5px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 8 - Por quanto Guilherme deveria ter vendido o violão?</h1>
+    <p>Guilherme vendeu seu violão por R$ 360,00, o que correspondia a 80% do valor.</p>
+    <p>Por quanto ele deveria ter vendido para ter um lucro de 20%?</p>
+    <button onclick="calcular()">Calcular</button>
+    <div id="resultado"></div>
+
+    <script>
+        function calcular() {
+            // 360 é 80% do valor original (custo)
+            // valorOriginal * 0.80 = 360
+            // valorOriginal = 360 / 0.80
+            let valorVendido = 360;
+            let porcentagemVendida = 0.80;
+            let valorOriginal = valorVendido / porcentagemVendida; // custo
+
+            // Para ter lucro de 20%: vender por valorOriginal * 1.20
+            let precoComLucro = valorOriginal * 1.20;
+
+            let html = `
+                <div class="calc">Valor vendido (80% do original): R$ ${valorVendido.toFixed(2)}</div>
+                <div class="calc">Valor original (custo): R$ ${valorVendido.toFixed(2)} ÷ 0,80 = <strong>R$ ${valorOriginal.toFixed(2)}</strong></div>
+                <div class="calc">Para lucro de 20%: R$ ${valorOriginal.toFixed(2)} × 1,20 = <strong>R$ ${precoComLucro.toFixed(2)}</strong></div>
+                <p style="font-size:20px; color:green; margin-top:15px;">
+                    <strong>Guilherme deveria ter vendido por R$ ${precoComLucro.toFixed(2)}</strong>
+                </p>
+            `;
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 13 - Potência</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #673AB7; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #512DA8; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        input { padding: 8px; width: 100px; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 13 - Calcular Potência com Laço</h1>
+    <p>Informe o número e o expoente. O resultado é calculado com um laço (sem usar Math.pow).</p>
+    <label>Base: <input type="number" id="base" value="2"></label>
+    <label>Expoente: <input type="number" id="expoente" value="5" min="0"></label>
+    <button onclick="calcularPotencia()">Calcular</button>
+    <div id="resultado"></div>
+
+    <script>
+        function calcularPotencia() {
+            let base = parseFloat(document.getElementById("base").value);
+            let expoente = parseInt(document.getElementById("expoente").value);
+
+            if (isNaN(base) || isNaN(expoente) || expoente < 0) {
+                document.getElementById("resultado").innerHTML = "<p style='color:red'>Digite valores válidos (expoente >= 0).</p>";
+                return;
+            }
+
+            let resultado = 1;
+            let passos = [];
+
+            if (expoente === 0) {
+                resultado = 1;
+                passos.push("Qualquer número elevado a 0 é 1.");
+            } else {
+                for (let i = 1; i <= expoente; i++) {
+                    resultado *= base;
+                    passos.push(`Passo ${i}: ${base} ^ ${i} = ${resultado}`);
+                }
+            }
+
+            document.getElementById("resultado").innerHTML = `
+                <p style="font-size:18px;"><strong>${base} elevado a ${expoente} = ${resultado}</strong></p>
+                <p>Passos do laço:</p>
+                <ul>${passos.map(p => `<li>${p}</li>`).join("")}</ul>
+            `;
+        }
+    </script>
+</body>
+</html>

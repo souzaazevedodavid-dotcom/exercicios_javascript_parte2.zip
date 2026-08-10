@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6 - Ingressos do Show</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #00BCD4; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #0097A7; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        .calc { background: #e0f7fa; padding: 10px; margin: 5px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 6 - Quantos Ingressos Junior poderá vender?</h1>
+    <p>Lotação máxima: 4 pessoas por m²</p>
+    <p>Trapézio: altura 145m, base maior 120m, base menor 75m</p>
+    <p>Palco (retângulo): 15m x 8,5m</p>
+    <button onclick="calcularIngressos()">Calcular Ingressos</button>
+    <div id="resultado"></div>
+
+    <script>
+        function calcularIngressos() {
+            // Área do trapézio
+            let baseMaior = 120;
+            let baseMenor = 75;
+            let altura = 145;
+            let areaTrapezio = ((baseMaior + baseMenor) / 2) * altura;
+
+            // Área do palco
+            let larguraPalco = 15;
+            let alturaPalco = 8.5;
+            let areaPalco = larguraPalco * alturaPalco;
+
+            // Área disponível para o público
+            let areaPublico = areaTrapezio - areaPalco;
+
+            // Lotação máxima: 4 pessoas por m²
+            let ingressos = Math.floor(areaPublico * 4);
+
+            let html = `
+                <div class="calc"><strong>Área do Trapézio:</strong> [(${baseMaior} + ${baseMenor}) / 2] × ${altura} = ${areaTrapezio.toFixed(2)} m²</div>
+                <div class="calc"><strong>Área do Palco:</strong> ${larguraPalco} × ${alturaPalco} = ${areaPalco.toFixed(2)} m²</div>
+                <div class="calc"><strong>Área disponível para o público:</strong> ${areaTrapezio.toFixed(2)} - ${areaPalco.toFixed(2)} = ${areaPublico.toFixed(2)} m²</div>
+                <div class="calc"><strong>Lotação máxima (4 pessoas/m²):</strong> ${areaPublico.toFixed(2)} × 4 = ${(areaPublico * 4).toFixed(2)}</div>
+                <p style="font-size:20px; color:green; margin-top:15px;"><strong>Junior poderá vender ${ingressos} ingressos.</strong></p>
+            `;
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

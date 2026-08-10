@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 7 - Pés para Metros</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #3F51B5; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #303F9F; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        input { padding: 8px; width: 150px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 7 - Converter Pés em Metros</h1>
+    <p>Altura dos jogadores da NBA anunciada em pés.</p>
+    <p>1 pé = 0,3048 metros</p>
+    <label>Altura em pés: <input type="number" id="pes" step="0.01" placeholder="Ex: 6.5"></label>
+    <button onclick="converter()">Converter</button>
+    <div id="resultado"></div>
+
+    <script>
+        function converter() {
+            let pes = parseFloat(document.getElementById("pes").value);
+
+            if (isNaN(pes) || pes < 0) {
+                document.getElementById("resultado").innerHTML = "<p style='color:red'>Digite um valor válido em pés.</p>";
+                return;
+            }
+
+            let metros = pes * 0.3048;
+            let cm = metros * 100;
+
+            document.getElementById("resultado").innerHTML = `
+                <p><strong>${pes} pés</strong> equivalem a:</p>
+                <p style="font-size:18px; color:green;"><strong>${metros.toFixed(4)} metros</strong></p>
+                <p>ou aproximadamente <strong>${cm.toFixed(2)} cm</strong></p>
+            `;
+        }
+
+        // Também permite via prompt se preferir
+        // Descomente se quiser versão com prompt:
+        // function converterPrompt() {
+        //     let pes = parseFloat(prompt("Digite a altura em pés:"));
+        //     ...
+        // }
+    </script>
+</body>
+</html>

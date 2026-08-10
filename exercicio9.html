@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 9 - Pontos de Gabriel</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #FF5722; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #E64A19; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        .calc { background: #fff3e0; padding: 10px; margin: 5px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 9 - Quantidade de pontos de Gabriel</h1>
+    <p>Mariana tem 18 pontos</p>
+    <p>Sabrina tem 22 pontos</p>
+    <p>Pontos de Gabriel = 1/4 da soma dos pontos de Mariana e Sabrina + 17</p>
+    <button onclick="calcular()">Calcular Pontos</button>
+    <div id="resultado"></div>
+
+    <script>
+        function calcular() {
+            let mariana = 18;
+            let sabrina = 22;
+            let soma = mariana + sabrina;
+            let umQuarto = soma / 4;
+            let gabriel = umQuarto + 17;
+
+            let html = `
+                <div class="calc">Mariana: ${mariana} pontos</div>
+                <div class="calc">Sabrina: ${sabrina} pontos</div>
+                <div class="calc">Soma: ${mariana} + ${sabrina} = ${soma}</div>
+                <div class="calc">1/4 da soma: ${soma} ÷ 4 = ${umQuarto}</div>
+                <div class="calc">Pontos de Gabriel: ${umQuarto} + 17 = <strong>${gabriel}</strong></div>
+                <p style="font-size:20px; color:green; margin-top:15px;">
+                    <strong>Gabriel tem ${gabriel} pontos.</strong>
+                </p>
+            `;
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

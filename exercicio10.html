@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10 - Swap de Nomes</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #607D8B; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #455A64; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        .iteracao { padding: 8px; border-bottom: 1px solid #eee; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 10 - Swap (Troca de Valores)</h1>
+    <p>Cria 2 variáveis com nomes e troca os valores a cada iteração do laço for.</p>
+    <button onclick="executarSwap()">Executar Swap</button>
+    <div id="resultado"></div>
+
+    <script>
+        function executarSwap() {
+            let primeiroNome = "will";
+            let segundoNome = "lucas";
+            let html = `<p><strong>Valores iniciais:</strong> primeiroNome = "${primeiroNome}", segundoNome = "${segundoNome}"</p>`;
+
+            // Laço for com algumas iterações (ex: 6)
+            for (let i = 1; i <= 6; i++) {
+                // Troca os valores
+                let temp = primeiroNome;
+                primeiroNome = segundoNome;
+                segundoNome = temp;
+
+                html += `<div class="iteracao">Iteração ${i}: primeiroNome = "${primeiroNome}", segundoNome = "${segundoNome}"</div>`;
+                
+                // Também no console
+                console.log(`Iteração ${i}: primeiroNome = "${primeiroNome}", segundoNome = "${segundoNome}"`);
+            }
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

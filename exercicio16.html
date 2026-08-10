@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 16 - Caixa d'Água com Vazamento</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #03A9F4; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #0288D1; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        .hora { padding: 5px; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 16 - Caixa d'Água com Vazamento</h1>
+    <p>Caixa inicia com 150 litros.</p>
+    <p>Perde 7 litros por hora.</p>
+    <p>O laço para enquanto o volume ainda for >= 0.</p>
+    <button onclick="simular()">Simular Vazamento</button>
+    <div id="resultado"></div>
+
+    <script>
+        function simular() {
+            let volume = 150;
+            let perdaPorHora = 7;
+            let horas = 0;
+            let html = `<div class="hora"><strong>Início:</strong> ${volume} litros</div>`;
+
+            // Continua enquanto volume - perda ainda for >= 0 (ou seja, para antes de ficar negativo)
+            while (volume - perdaPorHora >= 0) {
+                volume -= perdaPorHora;
+                horas++;
+                html += `<div class="hora">Após ${horas} hora(s): ${volume} litros</div>`;
+            }
+
+            html += `<p style="margin-top:15px; font-size:18px; color:green;">
+                <strong>Água restante no final: ${volume} litros</strong><br>
+                (Após ${horas} horas de vazamento)
+            </p>
+            <p>Na próxima hora o volume ficaria negativo (${volume - perdaPorHora} litros), então o laço parou.</p>`;
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 19 - Escada de Eco</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #9C27B0; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #7B1FA2; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        pre { font-family: monospace; font-size: 16px; line-height: 1.6; background: #263238; color: #ce93d8; padding: 15px; border-radius: 5px; }
+        input { padding: 8px; width: 80px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 19 - Escada de Eco (Laços Aninhados)</h1>
+    <p>A montanha responde com ecos crescentes.</p>
+    <label>Quantas vezes o eco acontece? <input type="number" id="vezes" value="5" min="1" max="20"></label>
+    <button onclick="gerarEco()">Gerar Eco</button>
+    <div id="resultado"></div>
+
+    <script>
+        function gerarEco() {
+            let n = parseInt(document.getElementById("vezes").value);
+
+            if (isNaN(n) || n < 1) {
+                document.getElementById("resultado").innerHTML = "<p style='color:red'>Digite um número válido (>= 1).</p>";
+                return;
+            }
+
+            let linhas = [];
+
+            // Laços aninhados
+            for (let i = 1; i <= n; i++) {
+                let linha = "";
+                for (let j = 1; j <= i; j++) {
+                    linha += "Olá ";
+                }
+                linhas.push(linha.trim());
+            }
+
+            document.getElementById("resultado").innerHTML = `
+                <p>Eco com ${n} repetições:</p>
+                <pre>${linhas.join("\n")}</pre>
+            `;
+        }
+
+        // Gera o exemplo ao carregar
+        window.onload = gerarEco;
+    </script>
+</body>
+</html>

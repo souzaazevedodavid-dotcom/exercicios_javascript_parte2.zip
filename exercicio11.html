@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 11 - Quadrado de Asteriscos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #795548; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #5D4037; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; }
+        pre { font-family: monospace; font-size: 18px; line-height: 1.4; background: #263238; color: #80cbc4; padding: 15px; border-radius: 5px; }
+        input { padding: 8px; width: 80px; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 11 - Imprimir Quadrado com Asteriscos</h1>
+    <p>Exemplo: Altura 5, Largura 6</p>
+    <label>Altura: <input type="number" id="altura" value="5" min="1"></label>
+    <label>Largura: <input type="number" id="largura" value="6" min="1"></label>
+    <button onclick="desenhar()">Desenhar</button>
+    <div id="resultado"></div>
+
+    <script>
+        function desenhar() {
+            let altura = parseInt(document.getElementById("altura").value);
+            let largura = parseInt(document.getElementById("largura").value);
+
+            if (isNaN(altura) || isNaN(largura) || altura < 1 || largura < 1) {
+                document.getElementById("resultado").innerHTML = "<p style='color:red'>Digite valores válidos (maiores que 0).</p>";
+                return;
+            }
+
+            let linhas = [];
+
+            for (let i = 0; i < altura; i++) {
+                let linha = "";
+                for (let j = 0; j < largura; j++) {
+                    // Borda: primeira/última linha ou primeira/última coluna
+                    if (i === 0 || i === altura - 1 || j === 0 || j === largura - 1) {
+                        linha += "* ";
+                    } else {
+                        linha += "  "; // dois espaços para alinhar com "* "
+                    }
+                }
+                linhas.push(linha.trimEnd());
+            }
+
+            document.getElementById("resultado").innerHTML = 
+                `<p>Quadrado ${altura} x ${largura}:</p><pre>${linhas.join("\n")}</pre>`;
+        }
+
+        // Desenha o exemplo ao carregar
+        window.onload = desenhar;
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - Produtos Vencidos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        button { padding: 10px 20px; background: #FF9800; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #F57C00; }
+        #resultado { margin-top: 20px; padding: 15px; background: white; border-radius: 5px; min-height: 50px; }
+        .vencido { color: red; font-weight: bold; }
+        .valido { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Exercício 3 - Verificar Produtos Vencidos</h1>
+    <p>Seu Margarido deseja saber se os produtos do supermercado estão vencidos.</p>
+    <p>Digite "sair" no nome do produto para encerrar.</p>
+    <button onclick="verificarProdutos()">Iniciar Consulta</button>
+    <div id="resultado"></div>
+
+    <script>
+        function verificarProdutos() {
+            let resultados = [];
+            let hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+
+            while (true) {
+                let nome = prompt("Digite o nome do produto (ou 'sair' para encerrar):");
+                
+                if (nome === null || nome.toLowerCase().trim() === "sair") {
+                    break;
+                }
+
+                if (nome.trim() === "") {
+                    alert("Nome do produto não pode ser vazio!");
+                    continue;
+                }
+
+                let dataStr = prompt(`Digite a data de vencimento do produto "${nome}" (formato: DD/MM/AAAA):`);
+                
+                if (dataStr === null) continue;
+
+                let partes = dataStr.split("/");
+                if (partes.length !== 3) {
+                    alert("Formato de data inválido! Use DD/MM/AAAA");
+                    continue;
+                }
+
+                let dia = parseInt(partes[0]);
+                let mes = parseInt(partes[1]) - 1;
+                let ano = parseInt(partes[2]);
+
+                let dataVencimento = new Date(ano, mes, dia);
+                dataVencimento.setHours(0, 0, 0, 0);
+
+                if (isNaN(dataVencimento.getTime())) {
+                    alert("Data inválida!");
+                    continue;
+                }
+
+                if (dataVencimento < hoje) {
+                    resultados.push(`<p class="vencido">❌ ${nome}: VENCIDO (venceu em ${dataStr})</p>`);
+                } else if (dataVencimento.getTime() === hoje.getTime()) {
+                    resultados.push(`<p style="color:orange; font-weight:bold;">⚠️ ${nome}: VENCE HOJE (${dataStr})</p>`);
+                } else {
+                    resultados.push(`<p class="valido">✅ ${nome}: VÁLIDO (vence em ${dataStr})</p>`);
+                }
+            }
+
+            if (resultados.length === 0) {
+                document.getElementById("resultado").innerHTML = "<p>Nenhum produto consultado.</p>";
+            } else {
+                document.getElementById("resultado").innerHTML = 
+                    "<h3>Resultados da consulta:</h3>" + resultados.join("");
+            }
+        }
+    </script>
+</body>
+</html>
